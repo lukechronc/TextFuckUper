@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 
 public class WindowMaker extends JFrame implements ActionListener {
@@ -11,7 +12,7 @@ public class WindowMaker extends JFrame implements ActionListener {
     private JLabel label;
 
     public WindowMaker(String title) {
-        //setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(400, 400);
         setTitle(title);
@@ -23,9 +24,10 @@ public class WindowMaker extends JFrame implements ActionListener {
 
         JButton button = new JButton("fUcK iT up");
         button.addActionListener(this);
-        add(area, BorderLayout.NORTH);
-        add(button, BorderLayout.CENTER);
-        add(label, BorderLayout.SOUTH);
+        add(area);
+        add(button);
+        add(label);
+        setLayout(new GridLayout(3,1,25,25));
         setVisible(true);
 
     }
@@ -38,6 +40,23 @@ public class WindowMaker extends JFrame implements ActionListener {
 
     private String fuckItUp(String plain) {
         //TODO implement this method
-        return null;
+        Random rand = new Random();
+        int i;
+        String[] words = plain.split("\\s");
+        StringBuilder sb = new StringBuilder();
+        for(String word : words){
+            char[] chars = word.toCharArray();
+            for (Character c : chars){
+                i = rand.nextInt(2);
+                if (i == 0){
+                    sb.append(Character.toUpperCase(c));
+                }else {
+                    sb.append(c);
+                }
+            }
+            sb.append(" ");
+        }
+
+        return sb.toString();
     }
 }
