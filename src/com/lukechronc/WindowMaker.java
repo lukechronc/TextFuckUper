@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class WindowMaker extends JFrame implements ActionListener {
     private JTextArea area;
-    private JLabel label;
+    private JTextPane textPane;
 
     public WindowMaker(String title) {
 
@@ -20,13 +20,14 @@ public class WindowMaker extends JFrame implements ActionListener {
 
         area = new JTextArea();
         area.setRows(3);
-        label = new JLabel("big oof");
+        textPane = new JTextPane();
+
 
         JButton button = new JButton("fUcK iT up");
         button.addActionListener(this);
         add(area);
         add(button);
-        add(label);
+        add(textPane);
         setLayout(new GridLayout(3,1,25,25));
         setVisible(true);
 
@@ -35,7 +36,7 @@ public class WindowMaker extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String plain = area.getText();
-        label.setText(fuckItUp(plain));
+        textPane.setText(fuckItUp(plain));
     }
 
     private String fuckItUp(String plain) {
